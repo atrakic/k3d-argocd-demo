@@ -4,4 +4,4 @@ This repo shows how to install [Argo CD](https://argoproj.io/) and use it with [
 
 ## Demo
 - [Argo CD login](https://argocd.k3d.local:8080/)
-- [GuestBook app](http://localhost:8080/)
+- [GuestBook app](http://guestbook.localhost:8080/)
