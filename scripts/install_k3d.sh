@@ -37,7 +37,7 @@ main() {
   # Deploy Ingress Controller #
   #############################
 
-  helm repo add traefik https://containous.github.io/traefik-helm-chart
+  helm repo add --force-update traefik https://containous.github.io/traefik-helm-chart
   helm install traefik traefik/traefik
 }
 
