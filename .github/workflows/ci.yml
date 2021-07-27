@@ -1,0 +1,24 @@
+name: argocd demo
+
+on:
+  [workflow_dispatch, push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Create k3d with regitry"
+        run: |
+          ./scripts/install_k3d.sh
+      
+      - name: "Create ArgoCD"
+        run: |
+          ./scripts/install_argocd.sh
+
+      - name: "Cluster info"
+        run: |
+          kubectl cluster-info
