@@ -38,7 +38,7 @@ main() {
   #############################
 
   helm repo add --force-update traefik https://containous.github.io/traefik-helm-chart
-  helm install traefik traefik/traefik
+  helm upgrade --install traefik traefik/traefik --wait
 }
 
 main "$@"
