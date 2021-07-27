@@ -13,6 +13,7 @@ jobs:
 
       - name: "Create k3d with regitry"
         run: |
+          sudo apt install -y libnss-myhostname
           ./scripts/install_k3d.sh
       
       - name: "Create ArgoCD"

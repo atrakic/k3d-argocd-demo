@@ -11,10 +11,6 @@ source "$CURR_DIR/common.sh"
 
 main() {
 
-  ###################
-  # Install ArgoCD  #
-  ###################
-  
   NS=argocd
   kubectl create namespace "$NS"
   
@@ -23,15 +19,16 @@ main() {
   kubectl -n "$NS" patch deployment argocd-server --type json \
     -p='[ { "op": "replace", "path":"/spec/template/spec/containers/0/command","value": ["argocd-server","--staticassets","/shared/app","--insecure"] }]' 
 
+  kubectl wait --for=condition=available deployment argocd-repo-server --timeout=60s -n "$NS"
+  kubectl wait --for=condition=available deployment argocd-dex-server --timeout=60s -n "$NS"
+
   #kubectl create namespace argo-rollouts
   #kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
 
-  kubectl -n "$NS" get pods,svc,ing,deploy
-  
   # Ingress
-  ARGOCD_HOST=argocd.k3d.local
+  ARGOCD_HOST=argocd.localhost
   kubectl apply -f ./manifests/argo.ingress_rule_traefik.yml
- 
+  kubectl -n "$NS" get pods,svc,ing,deploy
   sleep 1
   curl -skSL -H "Host: $ARGOCD_HOST" localhost:8080
 
