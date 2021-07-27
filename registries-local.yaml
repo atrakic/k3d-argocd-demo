@@ -1,0 +1,5 @@
+# https://github.com/rancher/k3d/issues/19#issuecomment-821845657
+mirrors:
+  "localhost:5000":
+    endpoint:
+      - "http://k3d-registry.localhost:5000"
