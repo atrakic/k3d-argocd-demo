@@ -27,15 +27,7 @@ main() {
   #kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
 
   kubectl apply -f ./manifests/argo.ingress_rule_traefik.yml
-  sleep 10
-  
-  kubectl -n "$NS" get rs,pods,svc,ing,deploy
-  #kubectl -n "$NS" get all
-  
-  # getpass: argocd v1.9 and later
-  PASS=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d | xargs)
-  argocd login --insecure --username admin --password "$PASS" $ARGOCD_HOST:8443
-  argocd app list
+  #curl -v --raw -X POST --http2 -H "Content-Type: application/grpc" $ARGOCD_HOST:8443
 }
 
 main "$@"

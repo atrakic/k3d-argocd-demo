@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: covid19-dashboard
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/atrakic/k3d-argocd-demo'
+    path: apps/covid19-dashboard/k8s-specifications
+    targetRevision: HEAD
+  destination:
+    namespace: dev
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true

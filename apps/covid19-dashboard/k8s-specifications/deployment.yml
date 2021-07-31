@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: covid19-dashboard
+  labels:
+    app: covid19-dashboard  
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: covid19-dashboard
+  template:
+    metadata:
+      labels:
+        app: covid19-dashboard
+    spec:
+      containers:
+        - name: covid19-dashboard
+          image: k3d-registry.localhost:5000/localhost/covid19-dashboard:v0.0.1
+          ports:
+            - containerPort: 80
