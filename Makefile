@@ -24,7 +24,10 @@ install_k3d install_argocd build-local argo_login:
 
 status:
 	k3d cluster ls
+	echo
 	kubectl get deployment,svc,po,ing,rs -o wide
+	echo
+	argocd app list
 
 clean:
 	echo -n "Are you sure? (Press Enter to continue or Ctrl+C to abort) "
