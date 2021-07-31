@@ -8,7 +8,7 @@ CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # shellcheck disable=SC1090
 source "$CURR_DIR/common.sh"
 
-VERSION=${1:-v0.0.1}
+VERSION=${VERSION:-v0.0.1}
 APP=covid19-dashboard
 IMAGE=localhost/$APP:$VERSION
 REGISTRY=localhost:5000 # registry.localhost
