@@ -27,7 +27,7 @@ main() {
   #kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
 
   kubectl apply -f ./manifests/argo.ingress_rule_traefik.yml
-  sleep 3
+  sleep 10
   
   kubectl -n "$NS" get rs,pods,svc,ing,deploy
   #kubectl -n "$NS" get all
