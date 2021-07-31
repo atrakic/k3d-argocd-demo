@@ -39,6 +39,20 @@ main() {
 
   helm repo add --force-update traefik https://containous.github.io/traefik-helm-chart
   helm upgrade --install traefik traefik/traefik --wait
+  
+  retries=10
+  ns=default
+  ds=svclb-traefik
+  while [[ $retries -ge 0 ]];do
+    sleep 3
+    ready=$(kubectl -n $ns get daemonset $ds -o jsonpath="{.status.numberReady}")
+    required=$(kubectl -n $ns get daemonset $ds -o jsonpath="{.status.desiredNumberScheduled}")
+    if [[ $ready -eq $required ]];then
+      echo "Succeeded: $ds"
+      break
+    fi
+    ((retries--))
+  done
 }
 
 main "$@"
