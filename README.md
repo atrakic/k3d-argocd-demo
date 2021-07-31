@@ -6,5 +6,5 @@ This repo shows how to install [Argo CD](https://argoproj.io/) and use it with [
 - Traefik v2
 
 ## Demo
-- [Argo CD login](https://argocd.k3d.local:8080/)
+- [Argo CD login](https://argocd.localhost:8443/)
 - [GuestBook app](http://guestbook.localhost:8080/)

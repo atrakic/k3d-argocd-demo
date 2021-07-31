@@ -14,7 +14,7 @@ VERSION=v0.0.1
 IMAGE=localhost/$APP:$VERSION
 REGISTRY=localhost:5000 # registry.localhost
 
-docker build -t $IMAGE -f ./apps/covid-19-dashboard/Dockerfile .
+docker build -t $IMAGE -f ./apps/covid-19-dashboard/src/Dockerfile .
 docker tag $IMAGE $REGISTRY/$IMAGE
 docker push $REGISTRY/$IMAGE
 
