@@ -9,13 +9,13 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.localhost`)
+      match: Host(`argocd.k3d.local`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
     - kind: Rule
-      match: Host(`argocd.localhost`) && Headers(`Content-Type`, `application/grpc`)
+      match: Host(`argocd.k3d.local`) && Headers(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server

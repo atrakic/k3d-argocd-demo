@@ -27,9 +27,9 @@ main() {
 
   kubectl apply -f ./manifests/argo.ingress_rule_traefik.yml
   kubectl -n "$NS" get pods,svc,ing,deploy
-  sleep 1
+  sleep 3
   
-  ARGOCD_HOST=argocd.localhost
+  ARGOCD_HOST=argocd.k3d.local
   #curl -skSL -H "Host: $ARGOCD_HOST" localhost:8080
 
   # getpass: argocd v1.9 and later

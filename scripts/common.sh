@@ -1,7 +1,10 @@
 #!/bin/bash
 
-CMD=k3s
-command -v $CMD >/dev/null 2>&1 || curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+PATH=/usr/local/bin:$PATH
+export PATH
+
+CMD=k3d
+command -v $CMD >/dev/null 2>&1 || ( curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash; )
 
 CMD=argocd
 command -v $CMD >/dev/null 2>&1 || ( curl -sSL -o /usr/local/bin/argocd \
@@ -9,10 +12,7 @@ command -v $CMD >/dev/null 2>&1 || ( curl -sSL -o /usr/local/bin/argocd \
   && chmod +x /usr/local/bin/argocd; )
 
 CMD=helm
-command -v $CMD >/dev/null 2>&1 || curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-
-PATH=/usr/local/bin:$PATH
-export PATH
+command -v $CMD >/dev/null 2>&1 || ( curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash ; )
 
 cluster_id=${cluster_id:-argocd}
 export cluster_id
